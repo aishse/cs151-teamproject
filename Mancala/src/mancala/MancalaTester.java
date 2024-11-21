@@ -11,6 +11,10 @@ public class MancalaTester {
 		
 		gameframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
+		// add the mancala game panel here 
+		MancalaView view = new MancalaView(new DefaultStyle()); 
+		
+		gameframe.add(view); 
 		
 		
 		//gameframe.pack(); 
