@@ -1,8 +1,10 @@
 package mancala;
+import java.util.*; 
 
 public class MancalaModel {
-private int[][] model = new int[7][2];
-private boolean isPlayerOne = true;
+	private int[][] model = new int[7][2];
+	private boolean isPlayerOne = true;
+	private ArrayList<StonePit> playerStones; 
 /**
  * @return the model
  */
