@@ -2,7 +2,8 @@ package mancala;
 import java.util.*; 
 
 public class MancalaModel {
-	private int[][] model = new int[7][2];
+	private int[][] model = new int[2][7];
+	private int[][] tempModel = new int[2][7];
 	private boolean isPlayerOne = true;
 	private ArrayList<StonePit> playerStones; 
 /**
@@ -36,6 +37,38 @@ public int oneScore() {
 public int twoScore() {
 	return model[1][6];
 }
+public int getValue(int x,int y) {
+	return model[x][y];
+}
+
+public void move(int x, int y) {
+	tempModel=model;
+	int stones=getValue(x,y);
+	while (stones>0) {
+		y+=1;
+		if (y==7) {
+			y=0;
+			if(x==2) {
+				x=0;
+			}
+		}
+		
+		if(isPlayerOne && x==1 && y == 6) {
+			x=0;
+			y=0;
+		}
+		else if(!isPlayerOne && x==0 && y == 0) {
+			x=0;
+			y=1;
+		}
+		model[x][y]+=1;
+		stones -=1;
+	}
+}
+public void undoMove() {
+	model=tempModel;
+}
+	
 /*
 	Idea: Having the first 
 */
