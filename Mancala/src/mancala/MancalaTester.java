@@ -20,9 +20,15 @@ public class MancalaTester {
 		
 		mainPanel.add(multicolor); 
 		mainPanel.add(defstyle); 
+		MancalaModel player1 = new MancalaModel(); 
+		
+		
+		MancalaModel player2 = new MancalaModel(); 
+		player2.setPlayerOne(false);
+		
 		
 		multicolor.addActionListener((event) -> {
-			MancalaView view = new MancalaView(new MulticolorStyle()); 
+			MancalaView view = new MancalaView(new MulticolorStyle(), player1, player2); 
 			gameframe.add(view); 
 			gameframe.remove(mainPanel);
 			gameframe.revalidate();
@@ -34,7 +40,7 @@ public class MancalaTester {
 		
 		
 		defstyle.addActionListener((event) -> {
-			MancalaView view = new MancalaView(new DefaultStyle()); 
+			MancalaView view = new MancalaView(new DefaultStyle(), player1, player2); 
 			gameframe.add(view); 
 			gameframe.remove(mainPanel);
 			gameframe.revalidate();
