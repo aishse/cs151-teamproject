@@ -22,12 +22,7 @@ Graphics2D g2 = (Graphics2D) g;
 		
 	
 		g2.setStroke(new BasicStroke(2));
-		RoundRectangle2D leftMancala = new RoundRectangle2D.Double(X_POS + 20, Y_POS + 10, 50, BOARD_HEIGHT-20, 40, 60); 
-		RoundRectangle2D rightMancala = new RoundRectangle2D.Double(X_POS + BOARD_WIDTH - 70, Y_POS + 10, 50, BOARD_HEIGHT-20, 40, 60); 
-
 		
-		g2.draw(leftMancala);
-		g2.draw(rightMancala);
 
 	
 		g2.setStroke(new BasicStroke(5));
@@ -56,9 +51,21 @@ Graphics2D g2 = (Graphics2D) g;
 
 	    
 	    g2.setTransform(original);
+	  
 	    
-	    // add logic for drawing all the pits and the dots here 
-
+	    int xpos = X_POS + 120; 
+	    for (int i = 1; i <= 6; i++) {
+            String text = "A" + i;
+            g.drawString(text, xpos, Y_POS + BOARD_HEIGHT - 20); 
+            xpos += 80; 
+        }
+	    
+	    xpos = X_POS + 120;
+	    for (int i = 1; i <= 6; i++) {
+            String text = "B" + i;
+            g.drawString(text, xpos, Y_POS + 40); 
+            xpos += 80; 
+        }
 
 	}
 

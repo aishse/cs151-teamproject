@@ -8,11 +8,11 @@ public class StonePit {
     private int width, height;
     private int stoneCount;
 
-    public StonePit(int x, int y, int width, int height, int initialStones) {
+    public StonePit(int x, int y,  int initialStones) {
         this.x = x;
         this.y = y;
-        this.width = width;
-        this.height = height;
+        this.width = 55;
+        this.height = 55;
         this.stoneCount = initialStones;
     }
 
@@ -28,11 +28,11 @@ public class StonePit {
 
         int stoneRadius = 10;
         int maxStonesPerRow = width / (stoneRadius + 5);
-        int row = 0, col = 0;
+        int row = 1, col = 1;
 
         for (int i = 0; i < stoneCount; i++) {
-            int stoneX = x + 10 + col * (stoneRadius + 5);
-            int stoneY = y + 10 + row * (stoneRadius + 5);
+            int stoneX = x + col * (stoneRadius + 5);
+            int stoneY = y +  row * (stoneRadius + 5);
 
 
             Ellipse2D stone = new Ellipse2D.Double(stoneX, stoneY, stoneRadius, stoneRadius);
@@ -43,8 +43,8 @@ public class StonePit {
 
 
             col++;
-            if (col >= maxStonesPerRow) {
-                col = 0;
+            if (col == maxStonesPerRow) {
+                col = 1;
                 row++;
             }
         }
