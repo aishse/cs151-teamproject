@@ -66,11 +66,10 @@ public void move(int x, int y) {
 	}
 }
 public void undoMove() {
+	int[][]temp=model;
 	model=tempModel;
+	tempModel=temp;
 }
 	
-/*
-	Idea: Having the first 
-*/
 
 }
