@@ -1,9 +1,12 @@
 package mancala;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
+import java.awt.event.*;
 
-public class StonePit {
+import java.awt.geom.Ellipse2D;
+import javax.swing.*; 
+
+public class StonePit extends JPanel {
     private int x, y;
     private int width, height;
     private int stoneCount;
@@ -14,16 +17,32 @@ public class StonePit {
         this.width = 55;
         this.height = 55;
         this.stoneCount = initialStones;
+        
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("Pit clicked!");
+                
+               
+            }
+        });
+        
     }
 
     // Draw the pit and stones
-    public void draw(Graphics2D g) {
+    @Override
+    protected void paintComponent(Graphics g) {
+    	super.paintComponent(g); 
+    	Graphics2D g2 = (Graphics2D) g; 
+    	
         // Draw the pit
-        Ellipse2D pit = new Ellipse2D.Double(x, y, width, height);
-        g.setColor(Color.LIGHT_GRAY);
-        g.fill(pit);
-        g.setColor(Color.BLACK);
-        g.draw(pit);
+    	g2.setStroke(new BasicStroke(2));
+    	
+        Ellipse2D pit = new Ellipse2D.Double(0,0,width, height);
+        g2.setColor(Color.LIGHT_GRAY);
+        g2.fill(pit);
+        g2.setColor(Color.BLACK);
+        g2.draw(pit);
 
 
         int stoneRadius = 10;
@@ -31,15 +50,15 @@ public class StonePit {
         int row = 1, col = 1;
 
         for (int i = 0; i < stoneCount; i++) {
-            int stoneX = x + col * (stoneRadius + 5);
-            int stoneY = y +  row * (stoneRadius + 5);
+            int stoneX = col * (stoneRadius + 5);
+            int stoneY = row * (stoneRadius + 5);
 
 
             Ellipse2D stone = new Ellipse2D.Double(stoneX, stoneY, stoneRadius, stoneRadius);
-            g.setColor(Color.BLUE);
-            g.fill(stone);
-            g.setColor(Color.BLACK);
-            g.draw(stone);
+            g2.setColor(Color.BLUE);
+            g2.fill(stone);
+            g2.setColor(Color.BLACK);
+            g2.draw(stone);
 
 
             col++;
