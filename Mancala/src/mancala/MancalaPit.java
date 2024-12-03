@@ -50,15 +50,15 @@ public class MancalaPit {
 	    }
 
 
-	    public void addStone(int count) {
-	        stoneCount += count;
-	    }
+    public void setStones(int amount) {
+        stoneCount = amount;
+    }
 
 
-	 
-	    public int getStoneCount() {
-	        return stoneCount;
-	    }
+ 
+    public int getStoneCount() {
+        return stoneCount;
+    }
 	    
 }
 

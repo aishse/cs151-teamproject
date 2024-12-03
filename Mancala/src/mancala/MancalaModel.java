@@ -5,8 +5,15 @@ public class MancalaModel {
 	private int[][] model = new int[2][7];
 	private int[][] tempModel = new int[2][7];
 	private boolean isPlayerOne = true;
+	
+	private MancalaView view; 
 	private ArrayList<StonePit> playerStones; 
+	
+	public MancalaModel(MancalaView view) {
+		this.view = view; 
+	}
 /**
+ * 
  * @return the model
  */
 public int[][] getModel() {
@@ -17,6 +24,19 @@ public int[][] getModel() {
  */
 public void setModel(int[][] model) {
 	this.model = model;
+}
+
+public void setInitialStones(int initial) {
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 6; j++) {
+		
+			model[i][j] = initial; 
+		}
+	}
+	model[0][0] = 0;
+	model[1][6] = 0;
+	
+	view.initializeStonePits(initial); 
 }
 /**
  * @return the isPlayerOne
@@ -31,6 +51,24 @@ public void setPlayerOne(boolean isPlayerOne) {
 	this.isPlayerOne = isPlayerOne;
 }
 
+public void printPits() {
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 7; j++) {
+			if (i == 0 && j == 0) {
+				System.out.println("Player1 mancala: " + model[i][j]);
+			}
+			else if (i == 1 && j == 6) {
+				System.out.println("Player2 mancala: " + model[i][j]);
+			}
+			else {
+				System.out.print(model[i][j] + " "); 
+			}
+		}
+		System.out.println(); 
+	}
+	System.out.println(); 
+	
+}
 public int oneScore() {
 	return model[0][0];
 }
@@ -44,6 +82,9 @@ public int getValue(int x,int y) {
 public void move(int x, int y) {
 	tempModel=model;
 	int stones=getValue(x,y);
+	
+	model[x][y] = 0; 
+	
 	while (stones>0) {
 		y+=1;
 		if (y==7) {
@@ -56,15 +97,24 @@ public void move(int x, int y) {
 		if(isPlayerOne && x==1 && y == 6) {
 			x=0;
 			y=0;
+			
 		}
 		else if(!isPlayerOne && x==0 && y == 0) {
 			x=0;
 			y=1;
 		}
 		model[x][y]+=1;
+		
 		stones -=1;
+		printPits(); 
+		
 	}
 }
+	
+	
+	
+	
+
 public void undoMove() {
 	int[][]temp=model;
 	model=tempModel;

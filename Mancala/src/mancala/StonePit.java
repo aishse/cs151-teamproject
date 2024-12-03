@@ -10,7 +10,7 @@ public class StonePit extends JPanel {
     private int x, y;
     private int width, height;
     private int stoneCount;
-
+    
     public StonePit(int x, int y,  int initialStones) {
         this.x = x;
         this.y = y;
@@ -22,7 +22,7 @@ public class StonePit extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 System.out.println("Pit clicked!");
-                
+       
                
             }
         });
