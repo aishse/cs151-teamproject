@@ -55,19 +55,7 @@ public void notifyGameStateChanged() {
 public int[][] getModel() {
 	return model;
 }
-public int[][] getPlayModel() {
-	int[][] play  = new int[2][6];
-		for (int j = 0; j < 6; j++) {
-		
-			play[0][j]=model[0][j+1]; 
-		}
-		for (int j = 0; j < 6; j++) {
-			
-			play[1][j]=model[1][j]; 
-		}
-		return play;
 
-}
 /**
  * @param model the model to set
  */
@@ -99,8 +87,8 @@ public void setInitialStones(int initial) {
 			model[i][j] = initial; 
 		}
 	}
-	model[0][0] = 0;
-	model[1][6] = 0;
+	model[1][0] = 0;
+	model[0][6] = 0;
 	
 	view.initializeStonePits(initial); 
 }
@@ -135,10 +123,10 @@ public void setViewLayout(BoardStyle l) {
 public void printPits() {
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 7; j++) {
-			if (i == 0 && j == 0) {
+			if (i == 0 && j == 6) {
 				System.out.println("Player1 mancala: " + model[i][j]);
 			}
-			else if (i == 1 && j == 6) {
+			else if (i == 1 && j == 0) {
 				System.out.println("Player2 mancala: " + model[i][j]);
 			}
 			else {
@@ -175,7 +163,7 @@ public int getValue(int x,int y) {
 public void move(int x, int y) {
 	printPits(); 
 	tempModel=model;
-	int stones=getValue(x,y);
+	int stones=model[x][y];
 	
 	model[x][y] = 0; 
 	
@@ -198,8 +186,10 @@ public void move(int x, int y) {
 				x=0;y=0;
 			}
 		}
+		
+		
 		model[x][y]+=1;
-		stones -=1;
+		stones -=1 ;
 		printPits(); 
 		
 	}
@@ -209,11 +199,11 @@ public void move(int x, int y) {
 	if (model[x][y] == 1 && !edge) {
 		if (isPlayerOne){
 			model[0][6] += model[(x+1)%2][y]; 
-			//model[(x+1)%2][y]=0; 
+			model[(x+1)%2][y]=0; 
 		}
 		else {
 			model[1][0] += model[(x+1)%2][y];
-			//model[(x+1)%2][y]=0; 
+			model[(x+1)%2][y]=0; 
 		}
 	}
 	*/

@@ -78,6 +78,7 @@ public class MancalaView extends JPanel implements StonePitListener {
 		for (int i = 0; i < boardPits.length; i++) {
 			for (int j = 0; j < boardPits[0].length; j++) {
 				boardPits[i][j].setStoneCount(number);
+	
 			}
 		}
 		
@@ -125,10 +126,10 @@ public class MancalaView extends JPanel implements StonePitListener {
 				}
 				else {
 					if(i==0) {
-						boardPits[i][j].setStoneCount(model.getValue(i, j)); 
+						boardPits[i][j].setStoneCount(model.getValue(i, j));
 					}
 					else {
-					boardPits[i][j-1].setStoneCount(model.getValue(i, j)); 
+					boardPits[i][j-1].setStoneCount(model.getValue(i, j));
 					}
 				}
 			}
