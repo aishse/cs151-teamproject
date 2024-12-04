@@ -14,15 +14,18 @@ public class MancalaView extends JPanel implements StonePitListener {
 	
 	private MancalaPit[] playerMancalas;
 
+
+
+	
 	/**
 	 * Constructor for MancalaView.
 	 * It sets up the board layout, initializes the pits for both players, and adds them to the panel.
 	 *
 	 * @param l The BoardStyle to define the layout of the game board.
 	 */
-	public MancalaView(BoardStyle l) {	
-		layout = l;
-
+	public MancalaView() {	
+		layout = new DefaultStyle(); 
+	
 	
 		boardPits = new StonePit[2][6]; 
 		playerMancalas = new MancalaPit[2]; 
