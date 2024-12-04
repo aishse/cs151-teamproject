@@ -109,6 +109,14 @@ public void move(int x, int y) {
 		printPits(); 
 		
 	}
+	if (model[x][y] == 1) {
+		if (isPlayerOne){
+			model[0][0] += model[(x+1)%2][y]; 
+		}
+		else {
+			model[1][6] += model[(x+1)%2][y];
+		}
+	}
 }
 	
 	
