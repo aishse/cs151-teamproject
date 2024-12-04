@@ -5,20 +5,37 @@ import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.RoundRectangle2D;
 
+/**
+ * Represents a pit in the Mancala board game.
+ * A pit contains a number of stones and has a position on the board.
+ * This class handles the visual representation of the pit and its stones.
+ */
 public class MancalaPit {
 	// number of stones in the pit
 	int stoneCount; 
 	int x;
 	int y;
 	int width;
-	
+
+	/**
+	 * Constructs a MancalaPit with the specified position.
+	 * Initially, the pit contains zero stones.
+	 *
+	 * @param x the x-coordinate of the pit
+	 * @param y the y-coordinate of the pit
+	 */
 	public MancalaPit(int x, int y) {
 		stoneCount = 0; 
 		this.x = x;
 		this.y = y; 
 		
 	}
-	
+
+	/**
+	 * Draws the pit and its stones on the board.
+	 *
+	 * @param g the {@code Graphics2D} object used to draw the pit and stones
+	 */
 	  public void draw(Graphics2D g) {
 	        // Draw the pit
 			RoundRectangle2D pit = new RoundRectangle2D.Double(x, y, 50, BoardStyle.BOARD_HEIGHT-20, 40, 60); 
@@ -50,11 +67,21 @@ public class MancalaPit {
 	    }
 
 
+	/**
+	 * Sets the number of stones in the pit.
+	 *
+	 * @param amount the number of stones to place in the pit
+	 */
     public void setStones(int amount) {
         stoneCount = amount;
     }
 
 
+	/**
+	 * Retrieves the number of stones in the pit.
+	 *
+	 * @return the number of stones in the pit
+	 */
  
     public int getStoneCount() {
         return stoneCount;
