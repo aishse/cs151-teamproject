@@ -46,6 +46,19 @@ public void notifyGameStateChanged() {
 public int[][] getModel() {
 	return model;
 }
+public int[][] getPlayModel() {
+	int[][] play  = new int[2][6];
+		for (int j = 0; j < 6; j++) {
+		
+			play[0][j]=model[0][j+1]; 
+		}
+		for (int j = 0; j < 6; j++) {
+			
+			play[1][j]=model[1][j]; 
+		}
+		return play;
+
+}
 /**
  * @param model the model to set
  */
@@ -81,6 +94,18 @@ public void setInitialStones(int initial) {
 	model[1][6] = 0;
 	
 	view.initializeStonePits(initial); 
+}
+public void setStones(int initial) {
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 6; j++) {
+		
+			model[i][j] = initial; 
+		}
+	}
+	model[0][0] = 0;
+	model[1][6] = 0;
+	
+	//view.initializeStonePits(initial); 
 }
 /**
  * @return the isPlayerOne
@@ -127,6 +152,7 @@ public int getValue(int x,int y) {
 }
 
 public void move(int x, int y) {
+	printPits(); 
 	tempModel=model;
 	int stones=getValue(x,y);
 	
@@ -164,13 +190,15 @@ public void move(int x, int y) {
 			model[1][6] += model[(x+1)%2][y];
 		}
 	}
+	isPlayerOne = !isPlayerOne;
 }
 	
-	
+
 	
 	
 
 public void undoMove() {
+	isPlayerOne = !isPlayerOne;
 	int[][]temp=model;
 	model=tempModel;
 	tempModel=temp;

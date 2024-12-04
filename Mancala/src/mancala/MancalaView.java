@@ -13,7 +13,7 @@ public class MancalaView extends JPanel implements StonePitListener {
 	private StonePit[][] boardPits; 
 	
 	private MancalaPit[] playerMancalas;
-
+	private MancalaModel model;
 
 
 	
@@ -31,7 +31,7 @@ public class MancalaView extends JPanel implements StonePitListener {
 		playerMancalas = new MancalaPit[2]; 
 		playerMancalas[0] = new MancalaPit(BoardStyle.X_POS + BoardStyle.BOARD_WIDTH - 70, BoardStyle.Y_POS + 10); 
 		playerMancalas[1] = new MancalaPit(BoardStyle.X_POS + 20, BoardStyle.Y_POS + 10); 
-		
+		model = new MancalaModel(this);
 	
 	}
 	
@@ -43,7 +43,7 @@ public class MancalaView extends JPanel implements StonePitListener {
 		this.setLayout(null); 
 		int xpos = BoardStyle.X_POS + 100; 
 		int ypos = BoardStyle.Y_POS + BoardStyle.BOARD_HEIGHT - 100;
-		
+		model.setStones(number);
 	
 		
 		
@@ -83,6 +83,8 @@ public class MancalaView extends JPanel implements StonePitListener {
 		
 		this.revalidate();
 	    this.repaint();
+	    
+	    model.printPits();
 	
 	}
 	
@@ -116,7 +118,26 @@ public class MancalaView extends JPanel implements StonePitListener {
 		this.repaint(); 
 		
 	}
-
+	public void updateMancalaPits() {
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < 7; j++) {
+				if ((i == 1 && j == 6) || (i == 0 && j == 0)) {
+					playerMancalas[i].setStones(model.getValue(i, j));
+				}
+				else {
+					if(i==0) {
+						boardPits[i][j-1].setStoneCount(model.getValue(i, j)); 
+					}
+					else {
+					boardPits[i][j].setStoneCount(model.getValue(i, j)); 
+					}
+				}
+			}
+		}
+		
+		this.repaint(); 
+		
+	}
 	/**
 	 * Customizes how the game board is drawn.
 	 * This method is automatically called when the panel is refreshed.
@@ -141,6 +162,13 @@ public class MancalaView extends JPanel implements StonePitListener {
 	@Override
 	public void clicked(StonePit pit) { 
 		  System.out.println("Pit clicked!" + pit.getPlayer() + " " + pit.getColumn());
+		  if (pit.getPlayer() == 0) {
+			  model.move(0, pit.getColumn());
+		  }
+		  else {
+			  model.move(1, pit.getColumn());
+		  }
+		  updateMancalaPits();
 	}
 	
 	
