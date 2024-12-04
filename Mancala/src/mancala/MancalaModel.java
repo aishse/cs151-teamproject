@@ -5,13 +5,40 @@ public class MancalaModel {
 	private int[][] model = new int[2][7];
 	private int[][] tempModel = new int[2][7];
 	private boolean isPlayerOne = true;
-	
+	private boolean gamestart = false; 
 	private MancalaView view; 
-	private ArrayList<StonePit> playerStones; 
+	
+	private final List<MancalaListener> listeners;
 	
 	public MancalaModel(MancalaView view) {
+		this.listeners = new ArrayList<>();
 		this.view = view; 
+		
 	}
+/**
+ * Adds a Mancala listener
+ * @param listener
+ */
+public void addMancalaListener(MancalaListener listener) {
+    listeners.add(listener);
+}
+
+/**
+ * Removes a Mancala listener
+ * @param listener
+ */
+public void removeMancalaListener(MancalaListener listener) {
+    listeners.remove(listener);
+}
+
+/**
+ * Notifies listeners when the game state changes
+ */
+public void notifyGameStateChanged() {
+    for (MancalaListener listener : listeners) {
+        listener.gameStarted(gamestart);
+    }
+}
 /**
  * 
  * @return the model
@@ -25,6 +52,23 @@ public int[][] getModel() {
 public void setModel(int[][] model) {
 	this.model = model;
 }
+/**
+ * Starts and stops the mancala game. 
+ * @param b
+ */
+public void setGameState(Boolean b) {
+	gamestart = b; 
+	notifyGameStateChanged(); 
+}
+
+/**
+* Starts and stops the mancala game. 
+* @param b
+*/
+public boolean isStarted() {
+	return gamestart;  
+}
+
 
 public void setInitialStones(int initial) {
 	for (int i = 0; i < 2; i++) {
@@ -50,7 +94,9 @@ public boolean isPlayerOne() {
 public void setPlayerOne(boolean isPlayerOne) {
 	this.isPlayerOne = isPlayerOne;
 }
-
+public void setViewLayout(BoardStyle l) {
+	view.setBoardLayout(l); 
+}
 public void printPits() {
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 7; j++) {

@@ -9,48 +9,22 @@ public class MancalaTester {
 		
 		gameframe.setTitle("Mancala Game");
 		gameframe.setSize(800, 500);
-		
+		mainPanel.setLayout(new BorderLayout());
 		gameframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
-				
-		//gameframe.add(view); 
+
+		MancalaView view = new MancalaView(); 
 		
-		JButton multicolor = new JButton("multicolor style"); 
-		JButton defstyle = new JButton("default style"); 
-		
-		mainPanel.add(multicolor); 
-		mainPanel.add(defstyle); 
-		
+		MancalaModel model = new MancalaModel(view); 
+		MancalaController controller = new MancalaController(model);  
 	
-		multicolor.addActionListener((event) -> {
-			MancalaView view = new MancalaView(new MulticolorStyle()); 
-			MancalaModel model = new MancalaModel(view); 
-			MancalaController controller = new MancalaController(model); 
-			gameframe.add(view); 
-			gameframe.remove(mainPanel);
-			gameframe.revalidate();
-			
-			gameframe.repaint(); 
-			view.repaint(); 
-			
-			
-		});
+	
+	
 		
-		
-		defstyle.addActionListener((event) -> {
-			MancalaView view = new MancalaView(new DefaultStyle()); 
-			MancalaModel model = new MancalaModel(view); 
-			MancalaController controller = new MancalaController(model); 
-
-			gameframe.add(view); 
-			gameframe.remove(mainPanel);
-			gameframe.revalidate();
-
-			gameframe.repaint(); 
-			view.repaint(); 
-			
-		});
-
+		mainPanel.add(controller, BorderLayout.SOUTH); 
+		mainPanel.add(view, BorderLayout.CENTER); 
+	
+	
 		//gameframe.pack(); 
 		gameframe.add(mainPanel); 
 		gameframe.setVisible(true);

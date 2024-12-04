@@ -7,7 +7,7 @@ import java.util.*;
  * View for Mancala game. Draws the game board based off a specified board layout strategy. 
  * 
  */
-public class MancalaView extends JPanel {
+public class MancalaView extends JPanel implements StonePitListener {
 	private BoardStyle layout; 
 
 	private StonePit[][] boardPits; 
@@ -15,11 +15,12 @@ public class MancalaView extends JPanel {
 	private MancalaPit[] playerMancalas; 
 
 	
-	public MancalaView(BoardStyle l) {	
-		layout = l;
+	public MancalaView() {	
+		layout = new DefaultStyle(); 
 	
 		boardPits = new StonePit[2][6]; 
 		playerMancalas = new MancalaPit[2]; 
+		
 		this.setLayout(null); 
 		int xpos = BoardStyle.X_POS + 100; 
 		int ypos = BoardStyle.Y_POS + BoardStyle.BOARD_HEIGHT - 100;
@@ -36,7 +37,7 @@ public class MancalaView extends JPanel {
 			newpit.setBounds(xpos, ypos, 60, 60);
 			boardPits[0][i] = newpit;
 			add(newpit); 
-			
+			newpit.addStonePitListener(this);
 			xpos += 80; 
 			
 		}
@@ -72,6 +73,16 @@ public class MancalaView extends JPanel {
 	}
 	
 	/**
+	 * Initializes layout of the mancala board. 
+	 * @param l
+	 */
+	public void setBoardLayout(BoardStyle l) {
+		layout = l; 
+		System.out.println("model layout is set1"); 
+		this.repaint(); 
+	}
+	
+	/**
 	 * Updates all mancala pits in the view based off model data. 
 	 * 
 	 * @param model
@@ -101,10 +112,15 @@ public class MancalaView extends JPanel {
 		playerMancalas[0].draw(g2);
 		playerMancalas[1].draw(g2);
 		// pure gui layout
+		
 		layout.draw(g2);
-	
+
 	}
-	
+
+	@Override
+	public void clicked(StonePit pit) {
+		  System.out.println("Pit clicked!" + pit.getStoneCount());
+	}
 	
 	
 	

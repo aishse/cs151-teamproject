@@ -2,7 +2,8 @@ package mancala;
 
 import java.awt.*;
 import java.awt.event.*;
-
+import java.util.*;
+import java.util.List;
 import java.awt.geom.Ellipse2D;
 import javax.swing.*; 
 
@@ -10,8 +11,10 @@ public class StonePit extends JPanel {
     private int x, y;
     private int width, height;
     private int stoneCount;
+    private final List<StonePitListener> listeners; 
     
     public StonePit(int x, int y,  int initialStones) {
+    	this.listeners = new ArrayList<>(); 
         this.x = x;
         this.y = y;
         this.width = 55;
@@ -21,14 +24,24 @@ public class StonePit extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("Pit clicked!");
-       
+              
+                for (StonePitListener l : listeners) {
+                	l.clicked(StonePit.this);
+                }
                
             }
         });
         
     }
-
+    
+    /**
+     * Adds a stone pit listener
+     * @param l
+     */
+    public void addStonePitListener(StonePitListener l) {
+    	listeners.add(l); 
+    }
+    
     // Draw the pit and stones
     @Override
     protected void paintComponent(Graphics g) {
@@ -90,4 +103,5 @@ public class StonePit extends JPanel {
     public void setStoneCount(int count) {
         stoneCount = count;
     }
+
 }
