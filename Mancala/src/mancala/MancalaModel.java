@@ -1,6 +1,11 @@
 package mancala;
-import java.util.*; 
+import java.util.*;
 
+/**
+ * This code represents the model for the Mancala game which maintains the game state, manages player turns,
+ * tracks the number of stones in pits, and notifies listeners of state changes.
+ * Implements the Model-View-Controller (MVC) design pattern.
+ */
 public class MancalaModel {
 	private int[][] model = new int[2][7];
 	private int[][] tempModel = new int[2][7];
@@ -9,7 +14,11 @@ public class MancalaModel {
 	private MancalaView view; 
 	
 	private final List<MancalaListener> listeners;
-	
+
+	/**
+	 * Constructs a MancalaModel with the specified view.
+	 * @param view the view to be associated with the model
+	 */
 	public MancalaModel(MancalaView view) {
 		this.listeners = new ArrayList<>();
 		this.view = view; 
@@ -147,10 +156,22 @@ public int oneScore() {
 public int twoScore() {
 	return model[1][6];
 }
+
+	/**
+	 * Retrieves the value at a specific pit.
+	 * @param x the row of the pit
+	 * @param y the column of the pit
+	 * @return the number of stones in the pit
+	 */
 public int getValue(int x,int y) {
 	return model[x][y];
 }
 
+	/**
+	 * Executes a move starting at the specified pit.
+	 * @param x the row of the starting pit
+	 * @param y the column of the starting pit
+	 */
 public void move(int x, int y) {
 	printPits(); 
 	tempModel=model;
@@ -201,9 +222,11 @@ public void move(int x, int y) {
 	System.out.println("----------------------------------------------");
 	isPlayerOne = !isPlayerOne;
 }
-	
 
-	
+
+	/**
+	 * Reverts the last move using the temporary model.
+	 */
 	
 
 public void undoMove() {
