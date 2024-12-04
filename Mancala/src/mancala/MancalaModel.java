@@ -73,7 +73,7 @@ public boolean isStarted() {
 
 public void setInitialStones(int initial) {
 	for (int i = 0; i < 2; i++) {
-		for (int j = 0; j < 6; j++) {
+		for (int j = 0; j < 7; j++) {
 		
 			model[i][j] = initial; 
 		}
@@ -85,7 +85,7 @@ public void setInitialStones(int initial) {
 }
 public void setStones(int initial) {
 	for (int i = 0; i < 2; i++) {
-		for (int j = 0; j < 6; j++) {
+		for (int j = 0; j < 7; j++) {
 		
 			model[i][j] = initial; 
 		}
