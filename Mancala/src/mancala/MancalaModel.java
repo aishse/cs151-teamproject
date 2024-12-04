@@ -191,7 +191,6 @@ public void move(int x, int y) {
 		
 		model[x][y]+=1;
 		stones -=1 ;
-		printPits(); 
 		
 	}
 	
@@ -219,10 +218,20 @@ public void move(int x, int y) {
 				}
 		}
 	}
-
-	System.out.println("----------------------------------------------");
-	printPits();
-	System.out.println("----------------------------------------------");
+	boolean game = false;
+	for(int i=0; i < 6;i++) {
+		if(model[0][i] != 0) {
+			game = true;
+		}
+	}
+	for(int i=0; i < 6;i++) {
+		if(model[1][i+1] != 0) {
+			game = true;
+		}
+	}
+	if(!game) {
+		setGameState(game);
+	}
 	isPlayerOne = !isPlayerOne;
 }
 
