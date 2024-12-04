@@ -162,10 +162,10 @@ public class MancalaView extends JPanel implements StonePitListener {
 	@Override
 	public void clicked(StonePit pit) { 
 		  System.out.println("Pit clicked!" + pit.getPlayer() + " " + pit.getColumn());
-		  if (pit.getPlayer() == 0) {
+		  if (pit.getPlayer() == 0 && model.isPlayerOne()) {
 			  model.move(0, pit.getColumn());
 		  }
-		  else {
+		  else if(pit.getPlayer() == 1 && !model.isPlayerOne()) {
 			  model.move(1, pit.getColumn()+1);
 		  }
 		  updateMancalaPits();

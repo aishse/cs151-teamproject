@@ -83,7 +83,7 @@ public boolean isStarted() {
 
 public void setInitialStones(int initial) {
 	for (int i = 0; i < 2; i++) {
-		for (int j = 0; j < 6; j++) {
+		for (int j = 0; j < 7; j++) {
 		
 			model[i][j] = initial; 
 		}
@@ -95,7 +95,7 @@ public void setInitialStones(int initial) {
 }
 public void setStones(int initial) {
 	for (int i = 0; i < 2; i++) {
-		for (int j = 0; j < 6; j++) {
+		for (int j = 0; j < 7; j++) {
 		
 			model[i][j] = initial; 
 		}
@@ -194,20 +194,32 @@ public void move(int x, int y) {
 		printPits(); 
 		
 	}
-	/*
+	
 	boolean edge = (x==1 && y == 0) || (x==0 && y == 6) ;
 	System.out.println(edge);
 	if (model[x][y] == 1 && !edge) {
-		if (isPlayerOne){
-			model[0][6] += model[(x+1)%2][y]; 
-			model[(x+1)%2][y]=0; 
+		if (x==0){
+			if(isPlayerOne) {
+			model[0][6] += model[(x+1)%2][y+1]; 
+			model[(x+1)%2][y+1]=0;
+			}
+			else {
+				model[1][0] += model[(x+1)%2][y+1]; 
+				model[(x+1)%2][y+1]=0;
+			}
 		}
 		else {
-			model[1][0] += model[(x+1)%2][y];
-			model[(x+1)%2][y]=0; 
+			if(isPlayerOne) {
+				model[0][6] += model[(x+1)%2][y-1]; 
+				model[(x+1)%2][y-1]=0;
+				}
+				else {
+					model[1][0] += model[(x+1)%2][y-1]; 
+					model[(x+1)%2][y-1]=0;
+				}
 		}
 	}
-	*/
+
 	System.out.println("----------------------------------------------");
 	printPits();
 	System.out.println("----------------------------------------------");
