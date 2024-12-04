@@ -84,7 +84,6 @@ public class MancalaView extends JPanel implements StonePitListener {
 		this.revalidate();
 	    this.repaint();
 	    
-	    model.printPits();
 	
 	}
 	
@@ -106,7 +105,7 @@ public class MancalaView extends JPanel implements StonePitListener {
 	public void updateMancalaPits(int[][] model) {
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 7; j++) {
-				if ((i == 1 && j == 6) || (i == 0 && j == 0)) {
+				if ((i == 0 && j == 6) || (i == 1 && j == 0)) {
 					playerMancalas[i].setStones(model[i][j]);
 				}
 				else {
@@ -121,15 +120,15 @@ public class MancalaView extends JPanel implements StonePitListener {
 	public void updateMancalaPits() {
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 7; j++) {
-				if ((i == 1 && j == 6) || (i == 0 && j == 0)) {
+				if ((i == 0 && j == 6) || (i == 1 && j == 0)) {
 					playerMancalas[i].setStones(model.getValue(i, j));
 				}
 				else {
 					if(i==0) {
-						boardPits[i][j-1].setStoneCount(model.getValue(i, j)); 
+						boardPits[i][j].setStoneCount(model.getValue(i, j)); 
 					}
 					else {
-					boardPits[i][j].setStoneCount(model.getValue(i, j)); 
+					boardPits[i][j-1].setStoneCount(model.getValue(i, j)); 
 					}
 				}
 			}
@@ -166,7 +165,7 @@ public class MancalaView extends JPanel implements StonePitListener {
 			  model.move(0, pit.getColumn());
 		  }
 		  else {
-			  model.move(1, pit.getColumn());
+			  model.move(1, pit.getColumn()+1);
 		  }
 		  updateMancalaPits();
 	}

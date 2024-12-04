@@ -102,8 +102,8 @@ public void setStones(int initial) {
 			model[i][j] = initial; 
 		}
 	}
-	model[0][0] = 0;
-	model[1][6] = 0;
+	model[1][0] = 0;
+	model[0][6] = 0;
 	
 	//view.initializeStonePits(initial); 
 }
@@ -159,37 +159,46 @@ public void move(int x, int y) {
 	model[x][y] = 0; 
 	
 	while (stones>0) {
-		y+=1;
-		if (y==7) {
-			y=0;
-			if(x==2) {
-				x=0;
+		if(x==0) {
+			y+=1;
+			if (y>5 && !isPlayerOne) {
+				x=1; y=6;
+			}
+			if(y>6) {
+				x=1;y=6;
 			}
 		}
-		
-		if(isPlayerOne && x==1 && y == 6) {
-			x=0;
-			y=0;
-			
-		}
-		else if(!isPlayerOne && x==0 && y == 0) {
-			x=0;
-			y=1;
+		else {
+			y--;
+			if(y<1 && isPlayerOne) {
+				x=0;y=0;
+			}
+			if(y<0) {
+				x=0;y=0;
+			}
 		}
 		model[x][y]+=1;
-		
 		stones -=1;
 		printPits(); 
 		
 	}
-	if (model[x][y] == 1) {
+	/*
+	boolean edge = (x==1 && y == 0) || (x==0 && y == 6) ;
+	System.out.println(edge);
+	if (model[x][y] == 1 && !edge) {
 		if (isPlayerOne){
-			model[0][0] += model[(x+1)%2][y]; 
+			model[0][6] += model[(x+1)%2][y]; 
+			//model[(x+1)%2][y]=0; 
 		}
 		else {
-			model[1][6] += model[(x+1)%2][y];
+			model[1][0] += model[(x+1)%2][y];
+			//model[(x+1)%2][y]=0; 
 		}
 	}
+	*/
+	System.out.println("----------------------------------------------");
+	printPits();
+	System.out.println("----------------------------------------------");
 	isPlayerOne = !isPlayerOne;
 }
 	
