@@ -63,7 +63,7 @@ public class MancalaView extends JPanel implements StonePitListener {
 		xpos = BoardStyle.X_POS + 100; 
 		ypos = BoardStyle.Y_POS + 50;
 		for (int i = 0; i < 6; i++) {
-			StonePit newpit = new StonePit(xpos, ypos, 0, i, 0);
+			StonePit newpit = new StonePit(xpos, ypos, 1, i, 0);
 			newpit.setBounds(xpos, ypos, 60, 60);
 			boardPits[1][i] = newpit;
 			add(newpit); 
