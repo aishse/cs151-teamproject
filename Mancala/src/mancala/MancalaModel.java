@@ -172,20 +172,32 @@ public void move(int x, int y) {
 		printPits(); 
 		
 	}
-	/*
+	
 	boolean edge = (x==1 && y == 0) || (x==0 && y == 6) ;
 	System.out.println(edge);
 	if (model[x][y] == 1 && !edge) {
-		if (isPlayerOne){
-			model[0][6] += model[(x+1)%2][y]; 
-			model[(x+1)%2][y]=0; 
+		if (x==0){
+			if(isPlayerOne) {
+			model[0][6] += model[(x+1)%2][y+1]; 
+			model[(x+1)%2][y+1]=0;
+			}
+			else {
+				model[1][0] += model[(x+1)%2][y+1]; 
+				model[(x+1)%2][y+1]=0;
+			}
 		}
 		else {
-			model[1][0] += model[(x+1)%2][y];
-			model[(x+1)%2][y]=0; 
+			if(isPlayerOne) {
+				model[0][6] += model[(x+1)%2][y-1]; 
+				model[(x+1)%2][y-1]=0;
+				}
+				else {
+					model[1][0] += model[(x+1)%2][y-1]; 
+					model[(x+1)%2][y-1]=0;
+				}
 		}
 	}
-	*/
+
 	System.out.println("----------------------------------------------");
 	printPits();
 	System.out.println("----------------------------------------------");
