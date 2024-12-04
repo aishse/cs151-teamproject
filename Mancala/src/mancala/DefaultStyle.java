@@ -6,15 +6,30 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.RoundRectangle2D;
 
+/**
+ * The DefaultStyle class is one style for the Mancala board.
+ * It implements the BoardStyle interface and defines how the board is drawn
+ * and what its name is.
+ */
 public class DefaultStyle implements BoardStyle {
 
-
+	/**
+	 * Returns the name of this board style.
+	 *
+	 * @return A string "Default Style".
+	 */
 	public String getName() {
 		// TODO Auto-generated method stub
 		return "Default Style";
 	}
 
 
+	/**
+	 * Draws the Mancala board with a default style.
+	 * This includes a rounded rectangle board, labels, and player areas.
+	 *
+	 * @param g The Graphics2D object used to draw the board.
+	 */
 	public void draw(Graphics2D g) {
 Graphics2D g2 = (Graphics2D) g; 
 		
