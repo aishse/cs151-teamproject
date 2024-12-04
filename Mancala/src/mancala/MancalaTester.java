@@ -1,8 +1,21 @@
 package mancala;
 import java.awt.*;
-import javax.swing.*; 
+import javax.swing.*;
 
+/**
+ * The MancalaTester class serves as the entry point for the Mancala game.
+ * It creates the game window (JFrame), sets up the game view, model, and controller,
+ * and adds components to the main panel for display.
+ */
 public class MancalaTester {
+
+	/**
+	 * The main method initializes the Mancala game by setting up the game window,
+	 * adding the view, model, and controller components, and organizing them
+	 * within a panel.
+	 *
+	 * @param args Command-line arguments (not used).
+	 */
 	public static void main(String[] args) {
 		JFrame gameframe = new JFrame(); 
 		JPanel mainPanel = new JPanel(); 
