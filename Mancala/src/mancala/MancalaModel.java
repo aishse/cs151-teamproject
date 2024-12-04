@@ -13,6 +13,7 @@ public class MancalaModel {
 	private boolean isPlayerOne = true;
 	private boolean gamestart = false;
 	private MancalaView view; 
+	private int undoCount = 0; 
 	
 	private final List<MancalaListener> listeners;
 
@@ -23,6 +24,7 @@ public class MancalaModel {
 	public MancalaModel(MancalaView view) {
 		this.listeners = new ArrayList<>();
 		this.view = view; 
+		
 		
 	}
 /**
@@ -86,12 +88,14 @@ public void setInitialStones(int initial) {
 		for (int j = 0; j < 7; j++) {
 		
 			model[i][j] = initial; 
+			
 		}
 	}
 	model[1][0] = 0;
 	model[0][6] = 0;
 	
 	view.initializeStonePits(initial); 
+	saveModel(); 
 }
 public void setStones(int initial) {
 	for (int i = 0; i < 2; i++) {
@@ -102,7 +106,7 @@ public void setStones(int initial) {
 	}
 	model[1][0] = 0;
 	model[0][6] = 0;
-	
+	saveModel(); 
 	//view.initializeStonePits(initial); 
 }
 /**
@@ -146,6 +150,16 @@ public int twoScore() {
 	return model[1][6];
 }
 
+/**
+ * Saves current state of the model
+ */
+public void saveModel() {
+	for (int i =0; i < 2; i++) {
+		for (int j = 0; j < 7; j++) {
+			tempModel[i][j] = model[i][j]; 
+		}
+	}
+}
 	/**
 	 * Retrieves the value at a specific pit.
 	 * @param x the row of the pit
@@ -163,12 +177,15 @@ public int getValue(int x,int y) {
 	 */
 public void move(int x, int y) {
 	printPits(); 
-	tempModel=model;
+	saveModel(); 
+
 	int stones=model[x][y];
 	
 	model[x][y] = 0; 
 	
+	
 	while (stones>0) {
+	
 		if(x==0) {
 			y+=1;
 			if (y>5 && !isPlayerOne) {
@@ -191,7 +208,8 @@ public void move(int x, int y) {
 		
 		model[x][y]+=1;
 		stones -=1 ;
-		printPits(); 
+		printPits();
+		
 		
 	}
 	
@@ -219,11 +237,15 @@ public void move(int x, int y) {
 				}
 		}
 	}
-
+	
 	System.out.println("----------------------------------------------");
 	printPits();
 	System.out.println("----------------------------------------------");
+	
 	isPlayerOne = !isPlayerOne;
+
+	
+	System.out.println("Next player's turn"); 
 }
 
 
@@ -233,10 +255,27 @@ public void move(int x, int y) {
 	
 
 public void undoMove() {
-	isPlayerOne = !isPlayerOne;
-	int[][]temp=model;
-	model=tempModel;
-	tempModel=temp;
+	if (undoCount < 3) {
+		undoCount++; 
+		System.out.println("UNDOING MOVE"); 
+	
+		for (int i = 0; i < 2; i++) {
+	        for (int j = 0; j < 7; j++) {
+	            model[i][j] = tempModel[i][j];
+	        }
+	    }
+	
+		
+		printPits(); 
+		view.undoMancalaPits(model);
+		view.repaint(); 
+		
+	
+	}
+	else {
+		System.out.println("Exceeded undo moves."); 
+		
+	}
 }
 	
 

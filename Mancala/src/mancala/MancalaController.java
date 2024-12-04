@@ -59,7 +59,12 @@ public class MancalaController extends JPanel implements MancalaListener{
 		removeAll(); 
 		this.repaint(); 
 		add(undo); 
-		
+		undo.addActionListener((event) -> {
+			model.undoMove();
+			System.out.println("undone"); 
+			this.repaint(); 
+			
+		});
 		// gets the intial stones from teh user 
 		int initialstones = 0;
 		do {

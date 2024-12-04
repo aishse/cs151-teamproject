@@ -103,14 +103,20 @@ public class MancalaView extends JPanel implements StonePitListener {
 	 * 
 	 * @param model
 	 */
-	public void updateMancalaPits(int[][] model) {
+	public void undoMancalaPits(int[][] m) {
+		model.setModel(m);
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 7; j++) {
 				if ((i == 0 && j == 6) || (i == 1 && j == 0)) {
-					playerMancalas[i].setStones(model[i][j]);
+					playerMancalas[i].setStones(m[i][j]);
 				}
 				else {
-					boardPits[i][j].setStoneCount(model[i][j]); 
+					if(i==0) {
+						boardPits[i][j].setStoneCount(m[i][j]);
+					}
+					else {
+					boardPits[i][j-1].setStoneCount(m[i][j]);
+					}
 				}
 			}
 		}
@@ -119,6 +125,7 @@ public class MancalaView extends JPanel implements StonePitListener {
 		
 	}
 	public void updateMancalaPits() {
+		
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 7; j++) {
 				if ((i == 0 && j == 6) || (i == 1 && j == 0)) {
@@ -168,7 +175,10 @@ public class MancalaView extends JPanel implements StonePitListener {
 		  else if(pit.getPlayer() == 1 && !model.isPlayerOne()) {
 			  model.move(1, pit.getColumn()+1);
 		  }
+		 
 		  updateMancalaPits();
+		  
+		
 	}
 	
 	
