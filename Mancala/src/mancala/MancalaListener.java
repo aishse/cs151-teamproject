@@ -3,6 +3,7 @@ package mancala;
  * Defines the listener interface for handling events in the Mancala game.
  * Classes implementing this interface will respond to game events such as
  * a stone being clicked, the game starting, or a player's turn.
+ *
  */
 public interface MancalaListener {
 
