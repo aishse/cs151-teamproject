@@ -1,8 +1,31 @@
 package mancala;
-
+/**
+ * Defines the listener interface for handling events in the Mancala game.
+ * Classes implementing this interface will respond to game events such as
+ * a stone being clicked, the game starting, or a player's turn.
+ *
+ */
 public interface MancalaListener {
-	void onStoneClicked(StonePit pit); 
-	void gameStarted(Boolean b); 
-	void onPlayer1(); 
+
+	/**
+	 * Called when a stone in a pit is clicked.
+	 *
+	 * @param pit the {@code StonePit} that was clicked
+	 */
+	void onStoneClicked(StonePit pit);
+
+	/**
+	 * Called when the game starts or stops.
+	 *
+	 * @param b {@code true} if the game has started, {@code false} otherwise
+	 */
+	void gameStarted(Boolean b);
+	/**
+	 * Called when it is Player 1's turn.
+	 */
+	void onPlayer1();
+	/**
+	 * Called when it is Player 2's turn.
+	 */
 	void onPlayer2(); 
 }
