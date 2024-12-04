@@ -14,5 +14,11 @@ public interface BoardStyle {
 	public final int X_POS = 75;
 	public final int Y_POS = 80;
 	String getName();
+
+	/**
+	 * This is the method to draw the board.
+	 *
+	 * @param g The Graphics2D object used to draw the board.
+	 */
 	void draw(Graphics2D g);
 }
