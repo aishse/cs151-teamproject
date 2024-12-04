@@ -12,7 +12,8 @@ public class MancalaController extends JPanel implements MancalaListener{
 	MancalaController(MancalaModel model) {
 		JButton multicolor = new JButton("multicolor style"); 
 		JButton defstyle = new JButton("default style");
-		System.out.println("Select a layout (default currently selected"); 
+		
+		System.out.println("Select a board style (default currently selected)"); 
 		
 		this.model = model; 
 
@@ -40,7 +41,7 @@ public class MancalaController extends JPanel implements MancalaListener{
 		
 		add(multicolor); 
 		add(defstyle); 
-		
+
 	
 		
 		
