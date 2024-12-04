@@ -12,9 +12,14 @@ public class MancalaView extends JPanel {
 
 	private StonePit[][] boardPits; 
 	
-	private MancalaPit[] playerMancalas; 
+	private MancalaPit[] playerMancalas;
 
-	
+	/**
+	 * Constructor for MancalaView.
+	 * It sets up the board layout, initializes the pits for both players, and adds them to the panel.
+	 *
+	 * @param l The BoardStyle to define the layout of the game board.
+	 */
 	public MancalaView(BoardStyle l) {	
 		layout = l;
 	
@@ -91,8 +96,13 @@ public class MancalaView extends JPanel {
 		this.repaint(); 
 		
 	}
-	
 
+	/**
+	 * Customizes how the game board is drawn.
+	 * This method is automatically called when the panel is refreshed.
+	 *
+	 * @param g The Graphics object used to draw components.
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
