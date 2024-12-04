@@ -5,9 +5,24 @@ import java.awt.event.*;
 import java.util.*;
 import java.util.List;
 import java.awt.geom.Ellipse2D;
-import javax.swing.*; 
+import javax.swing.*;
 
+/**
+ * The StonePit class represents a single pit in the Mancala game.
+ * Each pit can hold stones, respond to clicks, and notify listeners when clicked.
+ * The pit is drawn as a circular shape with stones inside it.
+ */
 public class StonePit extends JPanel {
+
+    /**
+     * Constructs a StonePit with the given parameters.
+     *
+     * @param x             The x-coordinate of the pit.
+     * @param y             The y-coordinate of the pit.
+     * @param player        The player this pit belongs to.
+     * @param col           The column index of the pit.
+     * @param initialStones The initial number of stones in the pit.
+     */
     private int x, y;
     private int player, column; 
     private int width, height;
@@ -46,6 +61,12 @@ public class StonePit extends JPanel {
     }
     
     // Draw the pit and stones
+
+    /**
+     * Draws the pit and the stones inside it.
+     *
+     * @param g The Graphics object used for drawing.
+     */
     @Override
     protected void paintComponent(Graphics g) {
     	super.paintComponent(g); 
@@ -97,18 +118,38 @@ public class StonePit extends JPanel {
         return removed;
     }
 
-
+    /**
+     * Returns the number of stones currently in the pit.
+     *
+     * @return The number of stones.
+     */
     public int getStoneCount() {
         return stoneCount;
     }
 
+    /**
+     * Returns the player this pit belongs to.
+     *
+     * @return The player number (1 or 2).
+     */
+
     public int getPlayer() {
     	return player; 
     }
-    
+    /**
+     * Returns the column index of the pit.
+     *
+     * @return The column index.
+     */
     public int getColumn() {
     	return column; 
     }
+
+    /**
+     * Sets the number of stones in the pit.
+     *
+     * @param count The new number of stones.
+     */
     public void setStoneCount(int count) {
         stoneCount = count;
     }
