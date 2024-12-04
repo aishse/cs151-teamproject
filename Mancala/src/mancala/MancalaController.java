@@ -31,7 +31,7 @@ public class MancalaController extends JPanel implements MancalaListener{
 		
 		defstyle.addActionListener((event) -> {
 			
-			model.setViewLayout(new MulticolorStyle()); 
+			model.setViewLayout(new DefaultStyle()); 
 			model.setGameState(true); 
 			
 			revalidate();		

@@ -9,17 +9,20 @@ import javax.swing.*;
 
 public class StonePit extends JPanel {
     private int x, y;
+    private int player, column; 
     private int width, height;
     private int stoneCount;
     private final List<StonePitListener> listeners; 
     
-    public StonePit(int x, int y,  int initialStones) {
+    public StonePit(int x, int y, int player, int col, int initialStones) {
     	this.listeners = new ArrayList<>(); 
         this.x = x;
         this.y = y;
         this.width = 55;
         this.height = 55;
         this.stoneCount = initialStones;
+        this.player = player;
+        this.column = col; 
         
         addMouseListener(new MouseAdapter() {
             @Override
@@ -99,7 +102,13 @@ public class StonePit extends JPanel {
         return stoneCount;
     }
 
-
+    public int getPlayer() {
+    	return player; 
+    }
+    
+    public int getColumn() {
+    	return column; 
+    }
     public void setStoneCount(int count) {
         stoneCount = count;
     }

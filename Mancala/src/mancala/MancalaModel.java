@@ -95,8 +95,9 @@ public void setPlayerOne(boolean isPlayerOne) {
 	this.isPlayerOne = isPlayerOne;
 }
 public void setViewLayout(BoardStyle l) {
-	view.setBoardLayout(l); 
+	view.setBoardStyle(l); 
 }
+
 public void printPits() {
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 7; j++) {

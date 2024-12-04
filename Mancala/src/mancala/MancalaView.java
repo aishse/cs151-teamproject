@@ -24,25 +24,33 @@ public class MancalaView extends JPanel implements StonePitListener {
 	 * @param l The BoardStyle to define the layout of the game board.
 	 */
 	public MancalaView() {	
-		layout = new DefaultStyle(); 
+		layout = null; 
 	
 	
 		boardPits = new StonePit[2][6]; 
 		playerMancalas = new MancalaPit[2]; 
+		playerMancalas[0] = new MancalaPit(BoardStyle.X_POS + BoardStyle.BOARD_WIDTH - 70, BoardStyle.Y_POS + 10); 
+		playerMancalas[1] = new MancalaPit(BoardStyle.X_POS + 20, BoardStyle.Y_POS + 10); 
 		
+	
+	}
+	
+	/**
+	 * Sets number of stones for each stone pit
+	 * @param number
+	 */
+	public void initializeStonePits(int number) {
 		this.setLayout(null); 
 		int xpos = BoardStyle.X_POS + 100; 
 		int ypos = BoardStyle.Y_POS + BoardStyle.BOARD_HEIGHT - 100;
 		
 	
 		
-		playerMancalas[0] = new MancalaPit(BoardStyle.X_POS + BoardStyle.BOARD_WIDTH - 70, BoardStyle.Y_POS + 10); 
-		playerMancalas[1] = new MancalaPit(BoardStyle.X_POS + 20, BoardStyle.Y_POS + 10); 
 		
 	
 		// initialize player 1 stone pits
 		for (int i = 0; i < 6; i++) {
-			StonePit newpit = new StonePit(xpos, ypos, 0);
+			StonePit newpit = new StonePit(xpos, ypos, 0, i, 0);
 			newpit.setBounds(xpos, ypos, 60, 60);
 			boardPits[0][i] = newpit;
 			add(newpit); 
@@ -55,37 +63,34 @@ public class MancalaView extends JPanel implements StonePitListener {
 		xpos = BoardStyle.X_POS + 100; 
 		ypos = BoardStyle.Y_POS + 50;
 		for (int i = 0; i < 6; i++) {
-			StonePit newpit = new StonePit(xpos, ypos, 0);
+			StonePit newpit = new StonePit(xpos, ypos, 0, i, 0);
 			newpit.setBounds(xpos, ypos, 60, 60);
 			boardPits[1][i] = newpit;
 			add(newpit); 
+			newpit.addStonePitListener(this);
 			
 			xpos += 80; 
 		}
 		
 		
-	    this.revalidate();
-	    this.repaint();
-	
-	}
-	
-	/**
-	 * Sets number of stones for each stone pit
-	 * @param number
-	 */
-	public void initializeStonePits(int number) {
+	    
+	    
 		for (int i = 0; i < boardPits.length; i++) {
 			for (int j = 0; j < boardPits[0].length; j++) {
 				boardPits[i][j].setStoneCount(number);
 			}
 		}
+		
+		this.revalidate();
+	    this.repaint();
+	
 	}
 	
 	/**
 	 * Initializes layout of the mancala board. 
 	 * @param l
 	 */
-	public void setBoardLayout(BoardStyle l) {
+	public void setBoardStyle(BoardStyle l) {
 		layout = l; 
 		System.out.println("model layout is set1"); 
 		this.repaint(); 
@@ -120,20 +125,22 @@ public class MancalaView extends JPanel implements StonePitListener {
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D) g; 
-		
-		playerMancalas[0].draw(g2);
-		playerMancalas[1].draw(g2);
-		// pure gui layout
-		
-		layout.draw(g2);
+		if (layout != null) {
+			super.paintComponent(g);
+			Graphics2D g2 = (Graphics2D) g; 
+			
+			playerMancalas[0].draw(g2);
+			playerMancalas[1].draw(g2);
+			// pure gui layout
+			
+			layout.draw(g2);
+		}
 
 	}
 
 	@Override
-	public void clicked(StonePit pit) {
-		  System.out.println("Pit clicked!" + pit.getStoneCount());
+	public void clicked(StonePit pit) { 
+		  System.out.println("Pit clicked!" + pit.getPlayer() + " " + pit.getColumn());
 	}
 	
 	
