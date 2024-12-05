@@ -283,6 +283,15 @@ public void move(int x, int y) {
 		view.repaint(); 
 		setGameState(game);
 		System.out.println("Game Over");
+		if (model[0][6] > model[1][0]) {
+			System.out.println("Player A wins!");
+		}
+		else if (model[0][6] < model[1][0]) {
+			System.out.println("Player B wins!");
+		}
+		else {
+			System.out.println("It is a tie :( ");
+		}
 		return;
 		
 		
