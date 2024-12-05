@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.util.*; 
 /**
  * Controls the Mancala application
+ * 
+ * @author Anishka Chauhan, Jaspreet Aujla, and Ivan Selvan 
+
  */
 public class MancalaController extends JPanel implements MancalaListener {
 
@@ -48,22 +51,11 @@ public class MancalaController extends JPanel implements MancalaListener {
 	}
 
 	@Override
-	/**
-	 * Called when a stone in a pit is clicked.
-	 *
-	 * @param pit the {@code StonePit} that was clicked
-	 */
 	public void onStoneClicked(StonePit pit) {
 	
 		// run the mancala game here
 	}
 
-	/**
-	 * Called when the game starts or stops.
-	 *
-	 * @param b {@code true} if the game has started, {@code false} otherwise
-	 */
-	
 	@Override
 	public void gameStarted(Boolean b) {
 		
@@ -76,7 +68,7 @@ public class MancalaController extends JPanel implements MancalaListener {
 			this.repaint(); 
 			
 		});
-		// gets the intial stones from the user 
+		// gets the intial stones from teh user 
 		int initialstones = 0;
 		do {
 			Scanner input = new Scanner(System.in); 

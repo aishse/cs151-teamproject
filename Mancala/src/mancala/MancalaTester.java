@@ -6,6 +6,9 @@ import javax.swing.*;
  * The MancalaTester class serves as the entry point for the Mancala game.
  * It creates the game window (JFrame), sets up the game view, model, and controller,
  * and adds components to the main panel for display.
+ * 
+ * @author Anishka Chauhan, Jaspreet Aujla, and Ivan Selvan 
+
  */
 public class MancalaTester {
 

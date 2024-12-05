@@ -10,6 +10,9 @@ import java.awt.geom.RoundRectangle2D;
  * The DefaultStyle class is one style for the Mancala board.
  * It implements the BoardStyle interface and defines how the board is drawn
  * and what its name is.
+ * 
+ * @author Anishka Chauhan, Jaspreet Aujla, and Ivan Selvan 
+
  */
 public class DefaultStyle implements BoardStyle {
 

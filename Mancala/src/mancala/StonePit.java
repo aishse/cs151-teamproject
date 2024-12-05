@@ -11,6 +11,9 @@ import javax.swing.*;
  * The StonePit class represents a single pit in the Mancala game.
  * Each pit can hold stones, respond to clicks, and notify listeners when clicked.
  * The pit is drawn as a circular shape with stones inside it.
+ * 
+ * @author Anishka Chauhan, Jaspreet Aujla, and Ivan Selvan 
+
  */
 public class StonePit extends JPanel {
 

@@ -7,6 +7,9 @@ import java.awt.geom.*;
  * The MulticolorStyle class defines a colorful style for the Mancala board.
  * It implements the BoardStyle interface and provides methods to draw the board
  * with multiple colors.
+ * 
+ * @author Anishka Chauhan, Jaspreet Aujla, and Ivan Selvan 
+
  */
 public class MulticolorStyle implements BoardStyle{
 

@@ -9,6 +9,9 @@ import java.awt.geom.RoundRectangle2D;
  * Represents a pit in the Mancala board game.
  * A pit contains a number of stones and has a position on the board.
  * This class handles the visual representation of the pit and its stones.
+ * 
+ * @author Anishka Chauhan, Jaspreet Aujla, and Ivan Selvan 
+
  */
 public class MancalaPit {
 	// number of stones in the pit

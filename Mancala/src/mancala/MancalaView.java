@@ -181,7 +181,7 @@ public class MancalaView extends JPanel implements StonePitListener {
 				  model.saveModel();
 				  model.move(0, pit.getColumn());
 			  }
-			  else if(pit.getPlayer() == 1 && !model.isPlayerOne()) {
+			  else if(pit.getPlayer() == 1 && !model.isPlayerOne()) { 
 				 
 				  model.saveModel();
 				  model.move(1, pit.getColumn()+1);

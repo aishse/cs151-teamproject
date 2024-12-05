@@ -5,7 +5,9 @@ import java.util.*;
  * This code represents the model for the Mancala game which maintains the game state, manages player turns,
  * tracks the number of stones in pits, and notifies listeners of state changes.
  * Implements the Model-View-Controller (MVC) design pattern.
- *
+ * 
+ * @author Anishka Chauhan, Jaspreet Aujla, and Ivan Selvan 
+
  */
 public class MancalaModel {
 	private int[][] model = new int[2][7];

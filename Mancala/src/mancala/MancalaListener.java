@@ -4,6 +4,8 @@ package mancala;
  * Classes implementing this interface will respond to game events such as
  * a stone being clicked, the game starting, or a player's turn.
  *
+ * @author Anishka Chauhan, Jaspreet Aujla, and Ivan Selvan 
+
  */
 public interface MancalaListener {
 
