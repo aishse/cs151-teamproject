@@ -256,10 +256,12 @@ public void move(int x, int y) {
 			game = true;
 		}
 	}
+	if(!game) {
 	for(int i=0; i < 6;i++) {
 		if(model[1][i+1] != 0) {
 			game = true;
 		}
+	}
 	}
 	if(!game) {
 		for(int i=0; i < 6;i++) {
@@ -285,10 +287,12 @@ public void move(int x, int y) {
 				game = true;
 			}
 		}
+		if (!game) {
 		for(int i=0; i < 6;i++) {
 			if(model[1][i+1] != 0) {
 				game = true;
 			}
+		}
 		}
 		if(!game) {
 			for(int i=0; i < 6;i++) {
@@ -298,6 +302,7 @@ public void move(int x, int y) {
 				model[1][0] += model[1][i+1];
 			}
 			setGameState(game);
+			System.out.print("Game Over");
 			
 			
 		}
