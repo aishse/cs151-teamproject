@@ -262,13 +262,46 @@ public void move(int x, int y) {
 		}
 	}
 	if(!game) {
+		for(int i=0; i < 6;i++) {
+			model[0][6] += model[0][i];
+		}
+		for(int i=0; i < 6;i++) {
+			model[1][0] += model[1][i+1];
+		}
 		setGameState(game);
+		
+		
 	}
+	if(!edge) {
 	setPlayerOne(!isPlayerOne);
 	
-	
-	
-	System.out.println("Next player's turn"); 
+	System.out.println("Next player's turn");
+	}
+	else {
+		System.out.println("Another turn for you.");
+		game = false;
+		for(int i=0; i < 6;i++) {
+			if(model[0][i] != 0) {
+				game = true;
+			}
+		}
+		for(int i=0; i < 6;i++) {
+			if(model[1][i+1] != 0) {
+				game = true;
+			}
+		}
+		if(!game) {
+			for(int i=0; i < 6;i++) {
+				model[0][6] += model[0][i];
+			}
+			for(int i=0; i < 6;i++) {
+				model[1][0] += model[1][i+1];
+			}
+			setGameState(game);
+			
+			
+		}
+	}
 }
 
 
