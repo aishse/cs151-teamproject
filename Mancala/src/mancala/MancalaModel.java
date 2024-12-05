@@ -184,7 +184,6 @@ public int getValue(int x,int y) {
 	 * @param y the column of the starting pit
 	 */
 public void move(int x, int y) {
-	printPits(); 
 	saveModel(); 
 	
 	int stones=model[x][y];
@@ -216,7 +215,6 @@ public void move(int x, int y) {
 		
 		model[x][y]+=1;
 		stones -=1 ;
-		printPits();
 		
 		
 	}
@@ -245,15 +243,12 @@ public void move(int x, int y) {
 				}
 		}
 	}
-	
-	System.out.println("----------------------------------------------");
-	printPits();
-	System.out.println("----------------------------------------------");
+
 	
 	boolean game = false;
 	
 	if(model[0][0] == 0 && model[0][1] == 0 && model[0][2] == 0 && model[0][3] == 0 && model[0][4] == 0 && model[0][5] == 0  ) {
-		System.out.println("Row Empty");
+	
 		game = false;
 	}
 		else {
@@ -261,9 +256,8 @@ public void move(int x, int y) {
 		}
 	
 	if(game) {
-		System.out.println("player b check");
 		if(model[1][1] == 0 && model[1][2] == 0 && model[1][3] == 0 && model[1][4] == 0 && model[1][5] == 0 && model[1][6] == 0   ) {
-			System.out.println("Row Empty");
+			
 			game = false;
 		}
 			else {
@@ -271,7 +265,6 @@ public void move(int x, int y) {
 			}
 	}
 	if(!game) {
-		System.out.println("clear mode");
 		for(int i=0; i < 6;i++) {
 			model[0][6] += model[0][i];
 			model[0][i] = 0;
@@ -347,7 +340,6 @@ public void undoMove() {
 	    }
 	
 		isPlayerOne = !isPlayerOne; 
-		printPits(); 
 		view.undoMancalaPits(model);
 		view.repaint(); 
 		
