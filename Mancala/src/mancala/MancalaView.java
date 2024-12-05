@@ -175,22 +175,26 @@ public class MancalaView extends JPanel implements StonePitListener {
 	public void clicked(StonePit pit) { 
 		//  System.out.println("Pit clicked!" + pit.getPlayer() + " " + pit.getColumn());
 		 
-		
-		  if (pit.getPlayer() == 0 && model.isPlayerOne()) {
+		  if (pit.getStoneCount() > 0) {
+			  if (pit.getPlayer() == 0 && model.isPlayerOne()) {
+				 
+				  model.saveModel();
+				  model.move(0, pit.getColumn());
+			  }
+			  else if(pit.getPlayer() == 1 && !model.isPlayerOne()) {
+				 
+				  model.saveModel();
+				  model.move(1, pit.getColumn()+1);
+			  }
 			 
-			  model.saveModel();
-			  model.move(0, pit.getColumn());
-		  }
-		  else if(pit.getPlayer() == 1 && !model.isPlayerOne()) {
-			 
-			  model.saveModel();
-			  model.move(1, pit.getColumn()+1);
+			  updateMancalaPits();
 		  }
 		  else {
-			  System.out.println("You can't play that pit!"); 
+			
+		      System.out.println("You can't play that pit!"); 
+			
 		  }
-		 
-		  updateMancalaPits();
+		  
 		  
 		  
 		
