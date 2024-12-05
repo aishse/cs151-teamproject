@@ -251,26 +251,39 @@ public void move(int x, int y) {
 	System.out.println("----------------------------------------------");
 	
 	boolean game = false;
-	for(int i=0; i < 6;i++) {
-		if(model[0][i] != 0) {
+	
+	if(model[0][0] == 0 && model[0][1] == 0 && model[0][2] == 0 && model[0][3] == 0 && model[0][4] == 0 && model[0][5] == 0  ) {
+		System.out.println("Row Empty");
+		game = false;
+	}
+		else {
 			game = true;
 		}
-	}
-	if(!game) {
-	for(int i=0; i < 6;i++) {
-		if(model[1][i+1] != 0) {
-			game = true;
+	
+	if(game) {
+		System.out.println("player b check");
+		if(model[1][1] == 0 && model[1][2] == 0 && model[1][3] == 0 && model[1][4] == 0 && model[1][5] == 0 && model[1][6] == 0   ) {
+			System.out.println("Row Empty");
+			game = false;
 		}
-	}
+			else {
+				game = true;
+			}
 	}
 	if(!game) {
+		System.out.println("clear mode");
 		for(int i=0; i < 6;i++) {
 			model[0][6] += model[0][i];
+			model[0][i] = 0;
 		}
 		for(int i=0; i < 6;i++) {
 			model[1][0] += model[1][i+1];
+			model[1][i+1] = 0;
 		}
+		view.repaint(); 
 		setGameState(game);
+		System.out.println("Game Over");
+		return;
 		
 		
 	}
