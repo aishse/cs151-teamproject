@@ -94,7 +94,7 @@ public class MancalaView extends JPanel implements StonePitListener {
 	 */
 	public void setBoardStyle(BoardStyle l) {
 		layout = l; 
-		System.out.println("model layout is set1"); 
+		//System.out.println("model layout is set1"); 
 		this.repaint(); 
 	}
 	
