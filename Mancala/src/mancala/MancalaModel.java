@@ -11,6 +11,8 @@ public class MancalaModel {
 	private int[][] model = new int[2][7];
 	private int[][] tempModel = new int[2][7];
 	private boolean isPlayerOne = true;
+	private boolean p1undo = true;
+	private boolean p2undo = false;
 	private boolean gamestart = false;
 	private MancalaView view; 
 	private int undoCount = 0; 
@@ -51,6 +53,7 @@ public void notifyGameStateChanged() {
         listener.gameStarted(gamestart);
     }
 }
+
 /**
  * 
  * @return the model
@@ -73,6 +76,8 @@ public void setGameState(Boolean b) {
 	gamestart = b; 
 	notifyGameStateChanged(); 
 }
+
+
 
 /**
 * Starts and stops the mancala game. 
@@ -120,6 +125,7 @@ public boolean isPlayerOne() {
  */
 public void setPlayerOne(boolean isPlayerOne) {
 	this.isPlayerOne = isPlayerOne;
+	
 }
 public void setViewLayout(BoardStyle l) {
 	view.setBoardStyle(l); 
@@ -154,6 +160,8 @@ public int twoScore() {
  * Saves current state of the model
  */
 public void saveModel() {
+	tempModel = new int[2][7]; 
+	
 	for (int i =0; i < 2; i++) {
 		for (int j = 0; j < 7; j++) {
 			tempModel[i][j] = model[i][j]; 
@@ -178,7 +186,7 @@ public int getValue(int x,int y) {
 public void move(int x, int y) {
 	printPits(); 
 	saveModel(); 
-
+	
 	int stones=model[x][y];
 	
 	model[x][y] = 0; 
@@ -256,20 +264,19 @@ public void move(int x, int y) {
 	if(!game) {
 		setGameState(game);
 	}
-	isPlayerOne = !isPlayerOne;
-
+	setPlayerOne(!isPlayerOne);
+	
+	
 	
 	System.out.println("Next player's turn"); 
 }
 
 
-	/**
-	 * Reverts the last move using the temporary model.
-	 */
-	
-
+/**
+ * Reverts the last move using the temporary model.
+ */
 public void undoMove() {
-	if (undoCount < 3) {
+	if (undoCount / 3 == 0) {
 		undoCount++; 
 		System.out.println("UNDOING MOVE"); 
 	
@@ -279,7 +286,7 @@ public void undoMove() {
 	        }
 	    }
 	
-		
+		isPlayerOne = !isPlayerOne; 
 		printPits(); 
 		view.undoMancalaPits(model);
 		view.repaint(); 
@@ -287,9 +294,10 @@ public void undoMove() {
 	
 	}
 	else {
-		System.out.println("Exceeded undo moves."); 
-		
+		System.out.println("Exceeded undo moves. Moving to next player"); 	
+		undoCount = 0;
 	}
+	
 }
 	
 

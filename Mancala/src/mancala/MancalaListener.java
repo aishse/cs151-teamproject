@@ -20,12 +20,7 @@ public interface MancalaListener {
 	 * @param b {@code true} if the game has started, {@code false} otherwise
 	 */
 	void gameStarted(Boolean b);
-	/**
-	 * Called when it is Player 1's turn.
-	 */
-	void onPlayer1();
-	/**
-	 * Called when it is Player 2's turn.
-	 */
-	void onPlayer2(); 
 }
+	
+	
+

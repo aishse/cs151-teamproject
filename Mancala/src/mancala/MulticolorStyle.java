@@ -8,7 +8,7 @@ import java.awt.geom.*;
  * It implements the BoardStyle interface and provides methods to draw the board
  * with multiple colors.
  */
-public class MulticolorStyle implements BoardStyle {
+public class MulticolorStyle implements BoardStyle{
 
 	@Override
 	public String getName() {

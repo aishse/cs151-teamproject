@@ -5,10 +5,10 @@ import java.util.*;
 /**
  * Controls the Mancala application
  */
-public class MancalaController extends JPanel implements MancalaListener{
+public class MancalaController extends JPanel implements MancalaListener {
 
 	private MancalaModel model;
-	
+	private JButton undo = new JButton ("undo"); 
 	MancalaController(MancalaModel model) {
 		JButton multicolor = new JButton("multicolor style"); 
 		JButton defstyle = new JButton("default style");
@@ -16,7 +16,7 @@ public class MancalaController extends JPanel implements MancalaListener{
 		System.out.println("Select a board style (default currently selected)"); 
 		
 		this.model = model; 
-
+		
 		model.addMancalaListener(this);
 		
 		multicolor.addActionListener((event) -> {
@@ -55,7 +55,7 @@ public class MancalaController extends JPanel implements MancalaListener{
 
 	@Override
 	public void gameStarted(Boolean b) {
-		JButton undo = new JButton ("undo"); 
+		
 		removeAll(); 
 		this.repaint(); 
 		add(undo); 
@@ -74,21 +74,13 @@ public class MancalaController extends JPanel implements MancalaListener{
 		}
 		while (initialstones != 3 && initialstones != 4); 
 		
-		
-		
 		model.setInitialStones(initialstones);
 		
-	}
-
-	@Override
-	public void onPlayer1() {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
-	@Override
-	public void onPlayer2() {
-		// TODO Auto-generated method stub
-		
-	}
+	
+
+	
 }

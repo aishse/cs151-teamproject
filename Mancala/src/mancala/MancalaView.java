@@ -99,7 +99,7 @@ public class MancalaView extends JPanel implements StonePitListener {
 	}
 	
 	/**
-	 * Updates all mancala pits in the view based off model data. 
+	 * Updates all mancala pits in the view based off previous model data. 
 	 * 
 	 * @param model
 	 */
@@ -120,10 +120,15 @@ public class MancalaView extends JPanel implements StonePitListener {
 				}
 			}
 		}
+		model.setPlayerOne(!model.isPlayerOne()); 
 		
 		this.repaint(); 
 		
 	}
+	/**
+	 * Updates mancala pits based off value of the model.
+	 * 
+	 */
 	public void updateMancalaPits() {
 		
 		for (int i = 0; i < 2; i++) {
@@ -168,15 +173,25 @@ public class MancalaView extends JPanel implements StonePitListener {
 
 	@Override
 	public void clicked(StonePit pit) { 
-		  System.out.println("Pit clicked!" + pit.getPlayer() + " " + pit.getColumn());
+		//  System.out.println("Pit clicked!" + pit.getPlayer() + " " + pit.getColumn());
+		 
+		
 		  if (pit.getPlayer() == 0 && model.isPlayerOne()) {
+			 
+			  model.saveModel();
 			  model.move(0, pit.getColumn());
 		  }
 		  else if(pit.getPlayer() == 1 && !model.isPlayerOne()) {
+			 
+			  model.saveModel();
 			  model.move(1, pit.getColumn()+1);
+		  }
+		  else {
+			  System.out.println("You can't play that pit!"); 
 		  }
 		 
 		  updateMancalaPits();
+		  
 		  
 		
 	}
